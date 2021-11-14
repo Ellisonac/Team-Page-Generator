@@ -1,0 +1,15 @@
+{
+  "name": "team-profile",
+  "version": "1.0.0",
+  "description": "Generates HTML to display a team of employees info",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Andrew Ellison",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.1"
+  }
+}
