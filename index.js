@@ -18,9 +18,9 @@ let employees = [];
 // Main cli functionaility
 async function main() {
 
-  //console.log("Beginning team creation. Please enter the team manager's information:")
-
   init();
+
+  console.log("Beginning team creation. Please enter the team manager's information:")
 
   let manager = new Manager();
   await manager.query();
@@ -34,11 +34,13 @@ async function main() {
 
     let choice = await getEmployeeType();
 
+    // Break loop if user selects "Finish" option
     if (choice.employeeType === "Finish") {
       finished = true;
       break
     }
 
+    // Instantiate the chosen employee type
     let employee;
     if (choice.employeeType === "Engineer") {
       employee = new Engineer();
@@ -48,18 +50,22 @@ async function main() {
       employee = new Employee();
     }
 
+    // Populate employee variables
     await employee.query();
 
+    // Add employee to team list
     employees.push(employee);
 
   }
 
+  // Generate HTML page based on team employees
   await generateHtml(employees);
 
 }
 
-// On startup copy current style.css to out directory
+// On startup
 async function init() {
+  // On startup copy current style.css to out directory
   fs.copyFile('./src/style.css','./dist/style.css',(err)=>{
     (err)?console.log(err):'';
   })
