@@ -1,4 +1,7 @@
-const Employee = require("../lib/Employee")
+const Employee = require("../lib/Employee");
+const inquirer = require("inquirer");
+
+jest.mock("inquirer")
 
 describe('Initialization', () => {
   it('Should set class variables when constructed', () => {
@@ -82,11 +85,20 @@ describe('Getters', () => {
 
 describe('Queries', () => {
 
-  // Must mock inquirer responses
-  //Need new path
-  //jest.mock('../inquirer');
+  it('Should populate employee values from query', async () => {
+    //'Andrew',1,'a@a.com'
+    
+    const emp = new Employee();
 
+    inquirer.prompt = jest.fn().mockReturnValue({name: "Andrew", id: 1, email: 'a@a.com'});
 
-  
+    await emp.query()
+
+    expect(emp.name).toBe('Andrew');
+    expect(emp.id).toBe(1);
+    expect(emp.email).toBe('a@a.com');
+  });
+
+  // TODO: how to test invalid user input types?
 
 });
