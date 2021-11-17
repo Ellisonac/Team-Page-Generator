@@ -18,7 +18,7 @@ let employees = [];
 // Main cli functionaility
 async function main() {
 
-  console.log("/nBeginning team creation. Please enter the team manager's information")
+  //console.log("Beginning team creation. Please enter the team manager's information:")
 
   init();
 
@@ -50,7 +50,7 @@ async function main() {
 
     await employee.query();
 
-    employees.push(employee)
+    employees.push(employee);
 
   }
 
@@ -60,90 +60,9 @@ async function main() {
 
 // On startup copy current style.css to out directory
 async function init() {
-  fs.copyFile('./src/style.css','./dist/style.css',(err)=>{})
-}
-
-// On startup ask for manager information
-async function queryManager() {
-  let manager = await inquirer.prompt([
-    {
-    type: "input",
-    name: "name",
-    message: "Enter manager's name:"
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "Enter manager's ID:"
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "Enter manager's email:"
-    },
-    {
-      type: "input",
-      name: "officeNum",
-      message: "Enter manager's office number:"
-    },
-  ])
-
-  return new Manager(manager.name,manager.id,manager.email,manager.officeNum);
-}
-
-// Query an engineer's information
-async function queryEngineer() {
-  let engineer = await inquirer.prompt([
-    {
-    type: "input",
-    name: "name",
-    message: "Enter engineer's name:"
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "Enter engineer's ID:"
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "Enter engineer's email:"
-    },
-    {
-      type: "input",
-      name: "github",
-      message: "Enter manager's Github username:"
-    },
-  ])
-
-  return new Engineer(engineer.name,engineer.id,engineer.email,engineer.github);
-}
-
-async function queryIntern() {
-  let intern = await inquirer.prompt([
-    {
-    type: "input",
-    name: "name",
-    message: "Enter intern's name:"
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "Enter intern's ID:"
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "Enter intern's email:"
-    },
-    {
-      type: "input",
-      name: "school",
-      message: "Enter intern's school name:"
-    },
-  ])
-
-  return new Intern(intern.name,intern.id,intern.email,intern.school);
+  fs.copyFile('./src/style.css','./dist/style.css',(err)=>{
+    (err)?console.log(err):'';
+  })
 }
 
 async function getEmployeeType() {
@@ -173,13 +92,16 @@ let test = [
 
 
 async function generateHtml(employees) {
+  // Read HTML base template file
   const baseHtml = fs.readFileSync("./src/base.html","utf8");
 
+  // Extract card HTML from each employee and join
   let cardHtml = employees.map((emp) => emp.getCard()).join(' ');
 
+  // Convert {{cards}} placeholder in template to extracted HTML
   let modHtml = baseHtml.replace("{{cards}}",cardHtml);
 
-  fs.writeFile("./dist/outHtml.html",modHtml,()=>{})
+  fs.writeFile("./dist/outHtml.html",modHtml,(err)=>{
+    (err)?console.log(err):'';
+  })
 }
-
-//generateHtml(test);
