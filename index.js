@@ -1,10 +1,10 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
 const Employee = require("./lib/Employee")
 const Engineer = require("./lib/Engineer")
 const Manager = require("./lib/Manager")
 const Intern = require("./lib/Intern")
 
-await inquirer.prompt(question);
 
 //start -> team manager setup, name, Id, email, office number
 //option -> add engineer or intern or finish
@@ -22,11 +22,18 @@ let test = [
 
 
 
-function generateHtml(employees) {
-  let response = await fetch("./src/base.html");
-  let baseHtml = response.text();
+async function generateHtml(test) {
+  const baseHtml = fs.readFileSync("./src/base.html","utf8");
 
   console.log(baseHtml)
+
+  console.log(test[0].getCard())
+
+  let cardHtml = test.map((emp) => emp.getCard()).join(' ');
+
+  let modHtml = baseHtml.replace("{{cards}}",cardHtml);
+
+  fs.writeFile("./dist/outHtml.html",modHtml,()=>{})
 
 }
 
