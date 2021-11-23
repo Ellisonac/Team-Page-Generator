@@ -4,6 +4,8 @@
 
 This CLI application allows a user to quickly create a basic webpage to show a team description page. The application uses Inquirer to guide the user through prompts to define the team manager and then add additional engineers or interns to their team. The end result is a packaged HTML/CSS static page with cards for each team member.
 
+See a project run through at: [Team Page Generator Walk Through](..link)
+
 ![License Badge](https://img.shields.io/badge/License-MIT-informational?logoColor=white&color=1CA2F1)
 
 ## Table of Contents
