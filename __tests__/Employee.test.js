@@ -99,6 +99,4 @@ describe('Queries', () => {
     expect(emp.email).toBe('a@a.com');
   });
 
-  // TODO: how to test invalid user input types?
-
 });
