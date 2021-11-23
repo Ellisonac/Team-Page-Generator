@@ -48,7 +48,7 @@ This code can be tested by running either of:
 
 ## Examples
 
-Example generated files can be found under /dist
+Example generated files can be found as exampleOut.html
 
 Example cli session:
 ```command
