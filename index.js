@@ -28,6 +28,8 @@ async function main() {
   // let manager = await queryManager();
   employees.push(manager);
 
+  // console.log(employees)
+
   // Main user polling loop
   finished = false;
   while (!finished) {
@@ -82,6 +84,7 @@ async function getEmployeeType() {
   ])
 }
 
+// This call causes errors in Jest testing
 main()
 
 let test = [
@@ -111,3 +114,6 @@ async function generateHtml(employees) {
     (err)?console.log(err):'';
   })
 }
+
+
+module.exports = main;

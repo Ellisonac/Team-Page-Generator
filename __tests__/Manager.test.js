@@ -95,7 +95,6 @@ describe('Getters', () => {
 describe('Queries', () => {
 
   it('Should populate Manager values from query', async () => {
-    //'Andrew',1,'a@a.com'
     
     const manager = new Manager();
 

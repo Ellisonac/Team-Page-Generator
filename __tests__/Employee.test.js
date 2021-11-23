@@ -1,5 +1,6 @@
 const Employee = require("../lib/Employee");
 const inquirer = require("inquirer");
+const robotjs = require("robotjs");
 
 jest.mock("inquirer")
 
@@ -86,7 +87,6 @@ describe('Getters', () => {
 describe('Queries', () => {
 
   it('Should populate employee values from query', async () => {
-    //'Andrew',1,'a@a.com'
     
     const emp = new Employee();
 
