@@ -18,8 +18,6 @@ let employees = [];
 // Main cli functionaility
 async function main() {
 
-  init();
-
   console.log("Beginning team creation. Please enter the team manager's information:")
 
   let manager = new Manager();
@@ -65,14 +63,6 @@ async function main() {
 
 }
 
-// On startup
-async function init() {
-  // On startup copy current style.css to out directory
-  fs.copyFile('./src/style.css','./dist/style.css',(err)=>{
-    (err)?console.log(err):'';
-  })
-}
-
 async function getEmployeeType() {
   return inquirer.prompt([
     {
@@ -84,20 +74,8 @@ async function getEmployeeType() {
   ])
 }
 
-// This call causes errors in Jest testing
+// Main loop initiation call
 main()
-
-let test = [
-  new Manager("Mark",2,"aaaa@good.com",36),
-  new Intern("Annie",1001,"bbb@bad.com","university31"),
-  new Engineer("Dave",3,"dave@dave.dave","davedev"),
-  new Intern("Annie",1001,"bbb@bad.com","university31"),
-  new Engineer("Dave",3,"dave@dave.dave","davedev"),
-  new Intern("Annie",1001,"bbb@bad.com","university31"),
-  new Engineer("Dave",3,"dave@dave.dave","davedev"),
-  new Intern("Annie",1001,"bbb@bad.com","university31"),
-  new Engineer("Dave",3,"dave@dave.dave","davedev"),
-];
 
 
 async function generateHtml(employees) {
